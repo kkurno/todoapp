@@ -4,6 +4,7 @@
 
 ```
 1. clone or download this project
-2. cd path/to/todoapp folder/
-3. npm install
+2. unzip todoapp-master
+3. cd path/to/todoapp-master (folder)/
+4. npm install
 ```
