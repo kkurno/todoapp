@@ -3,7 +3,9 @@
 ## Installation
 
 ```
-1. clone or download this project
-3. cd path/to/todoapp folder/
-4. npm install
+1. Clone or download this project
+2. If you downloaded. You must unzip the file
+3. Type cd path/to/todoapp folder/
+4. Type npm install
+5. For running. Type npm start
 ```
