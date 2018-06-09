@@ -8,12 +8,12 @@ import Footer from './components/Footer';
 
 class App extends Component {
   constructor(props) {
+    super(props);
     const initialTodos = [
       {id: 1, text: 'Go buy shoes', completed: false},
       {id: 2, text: 'Walk the dog', completed: true},
       {id: 3, text: 'Go fitness', completed: false},
     ];
-    super(props, initialTodos);
     this.state = {
       filter: 'all',
       todos: initialTodos,
