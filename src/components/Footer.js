@@ -17,7 +17,7 @@ class Footer extends Component {
                 </span>
                 <ul className="filters">
                     {filters.map(filter => (
-                        <li>
+                        <li key={filter.value}>
                           <a
                             className={filter.value === this.props.filter ? 'selected' : ''}
                             onClick={() => this.props.changeCurrentFilter(filter.value)}
