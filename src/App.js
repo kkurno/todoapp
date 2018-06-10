@@ -17,28 +17,24 @@ class App extends Component {
     this.state = {
       filter: 'all',
       todos: initialTodos,
-      flagId: initialTodos.length
+      flagId: initialTodos.length,
     }
   }
 
   onDelete = (index) => {
     let newflagId = this.state.flagId + 1;
-    let currentTodos = this.state.todos;
-    // delete currentTodos[index - 1];
     this.setState({
-      todos: currentTodos.filter(todo => todo.id !== index),
+      todos: this.state.todos.filter(todo => todo.id !== index),
       flagId: newflagId
     });
   }
 
   addTodo = (todoText) => {
     const newFlagId = this.state.flagId + 1;
-    const currentTodos = this.state.todos;
-    currentTodos.push({id: newFlagId, text: todoText, completed: false});
     this.setState({
-      todos: currentTodos,
+      todos: [...this.state.todos, { id: newFlagId, text: todoText, completed: false }],
       flagId: newFlagId
-    });
+    })
   }
 
   toggleComplete = (id, completed) => {
@@ -58,33 +54,20 @@ class App extends Component {
     });
   }
 
-  countActiveItem = () => {
-    let itemLeft = 0;
-    this.state.todos.forEach((todo) => {
-      itemLeft = todo.completed === false ? itemLeft + 1 : itemLeft;
-    });
-    return itemLeft;
-  }
-
   changeCurrentFilter = (filterType) => {
-    let newFilter = '';
-    switch(filterType) {
-      case 'all' : newFilter = 'all'; break;
-      case 'active' : newFilter = 'active'; break;
-      case 'completed' : newFilter = 'completed'; break;
-      default: 
-    }
     this.setState({
-      filter: newFilter
+      filter: filterType
     });
   }
 
   render() {
+    const countActiveItem = this.state.todos.filter(todo => todo.completed === false).length;
+
     return (
       <div className="todoapp">
         <Header onSubmit={this.addTodo}/>
         <Main filter={this.state.filter} todos={this.state.todos} onDelete={this.onDelete} onToggleComplete={this.toggleComplete}/>
-        <Footer filter={this.state.filter} changeCurrentFilter={this.changeCurrentFilter} countActiveItem={this.countActiveItem}/>
+        <Footer filter={this.state.filter} changeCurrentFilter={this.changeCurrentFilter} countActiveItem={countActiveItem}/>
       </div>
     );
   }
